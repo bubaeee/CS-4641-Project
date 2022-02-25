@@ -52,4 +52,5 @@ Attached below is our anticipated timeline for completing this project. You may 
 
 ## Presentation and Video
 [Presentation](https://gtvault.sharepoint.com/:p:/s/CS4641312/EUZlf5n9j2JPuo8EhnIxTRsBwmvmfxvZWx6wrPuJogyhrw?e=ybpUGi)
+
 [<img width="771" alt="Screen Shot 2022-02-24 at 8 41 10 PM" src="https://user-images.githubusercontent.com/54367063/155637341-77228758-2f22-4227-b0aa-5941bfdf7d38.png">](https://youtu.be/c0mfkQjocU4)

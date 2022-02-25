@@ -49,3 +49,7 @@ This could be useful in various instances, including online learning to enable a
 ## Timeline 
 Attached below is our anticipated timeline for completing this project. You may click [here](https://docs.google.com/spreadsheets/d/1gdtmGyuqDqsXoawf1rPn08ourgeTl3u5ylTovp2m1GM/edit?usp=sharing) to get a closer look as well.
 ![timeline](timeline.png)
+
+## Presentation and Video
+Video: https://youtu.be/c0mfkQjocU4
+Presentation: https://gtvault.sharepoint.com/:p:/s/CS4641312/EUZlf5n9j2JPuo8EhnIxTRsBwmvmfxvZWx6wrPuJogyhrw?e=ybpUGi

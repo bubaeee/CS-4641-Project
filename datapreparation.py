@@ -9,11 +9,11 @@ import numpy as np
 import cv2
 
 download_directory = "Download-images"
-grayscale_directory = "Grayscale-images"
+resize_directory = "Resized-images"
 faces_directory = "Faces"
 
 path_to_images = os.path.join(os.getcwd(), download_directory)
-path_to_grayscale = os.path.join(os.getcwd(), grayscale_directory)
+path_to_resize = os.path.join(os.getcwd(), resize_directory)
 path_to_faces = os.path.join(os.getcwd(), faces_directory)
 
 def downloadImages(num_to_try, full=False):
@@ -52,19 +52,19 @@ def resize(scale_factor, resize_threshold=350):
                 height = int(img.shape[0] * scale_factor / 100)
                 resized = cv2.resize(img, (width,height))
             #convert to grayscale
-            gray_img = cv2.cvtColor(resized, cv2.COLOR_BGR2GRAY)
+            #gray_img = cv2.cvtColor(resized, cv2.COLOR_BGR2GRAY)
 
-            output_path = os.path.join(path_to_grayscale, "resized_graycsale_"+image)
-            cv2.imwrite(output_path, gray_img)
+            output_path = os.path.join(path_to_resize, "resized_"+image)
+            cv2.imwrite(output_path, resized)
         except:
             print('error resizing image: ', image)
 
 def facialDetection():
     count = 0
-    images = [file for file in os.listdir(path_to_grayscale) if file.endswith(('jpeg', 'png', 'jpg'))]
+    images = [file for file in os.listdir(path_to_resize) if file.endswith(('jpeg', 'png', 'jpg'))]
     for image in images:
         try:
-            image_path = os.path.join(path_to_grayscale, image)
+            image_path = os.path.join(path_to_resize, image)
             count += detectFace(image_path)
         except:
             print('error detecting face: ', image)
@@ -77,10 +77,11 @@ def detectFace(image_path):
     image = cv2.imread(image_path)
 
     image_name = image_path.split('/')[-1]
-    #gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     #detect face in image
     face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-    faces = face_cascade.detectMultiScale(image, 1.3, 5)
+    faces = face_cascade.detectMultiScale(gray, 1.2, 4)
     #draw rectangle around face
     if len(faces)==0:
         print('no face detected')
@@ -92,7 +93,8 @@ def detectFace(image_path):
     return 1
 
 if __name__ == '__main__':
-    downloadImages(10)
+    #downloadImages(10)
     resize(50)
     facialDetection()
+    
     

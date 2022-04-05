@@ -92,7 +92,7 @@ def detectFace(image_path):
     return 1
 
 if __name__ == '__main__':
-    #downloadImages(10)
-    #resize(50)
+    downloadImages(10)
+    resize(50)
     facialDetection()
     

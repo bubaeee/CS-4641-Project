@@ -53,10 +53,6 @@ test_set = datagen_val.flow_from_directory(folder_path+"validation",
 
 
 
-#building model with 7 classes
-from keras.optimizers import Adam,SGD,RMSprop
-
-
 no_of_classes = 7
 
 

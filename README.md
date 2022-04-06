@@ -1,3 +1,9 @@
+---
+title: Project Proposal
+layout: template
+filename: README.md
+--- 
+
 # CS 4641 Group 9: Project Proposal
 *Machine learning project on mapping facial expressions to Apple emojis*
 

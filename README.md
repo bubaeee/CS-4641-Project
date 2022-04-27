@@ -1,18 +1,22 @@
 # CS 4641 Group 9: Final Report
 ## I.	INTRODUCTION
 Recognition of emotions through software has been an area of research that has been rapidly growing over the past couple of years. With facial detection evolving and being integrated into everyday tasks such as unlocking your phone and using digital pay, it is time that facial recognition moves further but now in detecting emotions. 
+
 Some of the past work that has already been done involves automatic detection of emotions in human photographs by Kosti (Kosti, 2019) and automatic detection using dual-channel expression learning algorithm by Song (Song, 2021) to improve forms of interpersonal communication through emotion recognition. 
 Inspired by this, we wanted to replicate emotion detection through facial expressions and map them to Apple emojis as these emojis are a widely used form of communication online. Our main dataset for completing this project was the Johnathan Oheix dataset, which contained thousands of images all classified by the primary emotion displayed in them. This variety of classified images was the foundation for our work and the initial basis for training our model.
 
 ## II.	PROBLEM DEFINITION
 If we want computers to be genuinely intelligent, adapt to us, and interact naturally with us, they will need the ability to recognize and express emotions (Picard, 2021). What seems like a fun project can impact several aspects of our lives. 
+
 By mapping facial expressions to emojis, we will create a technology that benefits many institutions in the healthcare, gaming, security, and marketing industries, to mention a few. For example, a marketing and PR firm can use emotion detection to see how people react to a particular marketing campaign. It could also be useful for online learning to enable automatic tutors to provide better feedback for students according to their level of motivation or frustration (Kosti, 2019), and with online texting platforms to make communication more accessible to people with vision impairment.
+
 We need to bridge the gap between technology and humans, and emotion detection is a great way to do that.
 
 ## III.	DATA COLLECTION
 We initially sourced our dataset from R. Vemulapalli and A. Agarwala’s paper titled “A Compact Embedding for Facial Expression Similarity” (FES). At the time, we felt the Vemulapalli and Agarwala’s FES dataset was better for methods because the dataset is grouped in rows with the classification of ONE_CLASS_TRIPLET, SECOND_CLASS_TRIPLET and THREE_CLASS_TRIPLET representing scenarios where all images have one emotion, two images having one emotion in common and all the images having no emotion in common, respectively. 
- 
+
 For the data cleaning portion of the project, we began by performing feature selection on the dataset to identify rows of data that belonged to the ONE_CLASS_TRIPLET to enable us to identify the emotions in that class. We then created a Python script that would take the data presented in the compressed dataset and make it more compatible with our model. This involved downloading and saving thousands of images from the Internet, resizing the pictures to a common fixed height and width, and converting them to grayscale for easier and more accurate readings.
+
 After cleaning our new dataset, we pivoted to a new public dataset created by Johnathan Oheix, simply titled “Facial expression recognition dataset”. We decided to make this change because the Vemulapalli and Agarwala’s FES dataset did not assign labels to the images identifying what the emotion was, and manually assigning emotions to each datapoint was not feasible. This made it difficult to perform supervised learning on these images. The Johnathan Oheix dataset, however, groups pictures of emotions into the 7 major emotions: anger, disgust, fear, happiness, neutral, sad and surprised. This made it easier to train and test our models to identify emotions displayed in visual media.
 
 ![emotionwheel](emotionwheel.png) <br/>
@@ -21,9 +25,11 @@ After cleaning our new dataset, we pivoted to a new public dataset created by Jo
 ## IV.	METHODS AND DISCUSSION
 To adequately test and tune our network, we built four convolutional neural networks. They all are conceptually similar, with all of them using supervised deep learning to detect emotions in the different images.
 Our first model was largely based on the one used by Oheix with six layers; four convolutional layers that use 3x3 kernels and two fully connected layers. One of the key features of this model was that it started with a learning rate of .001, but as the model’s validation loss flattened out, we reduced the learning rate. In addition, while we have the maximum number of training epochs as 50, we used callbacks to stop the training once the accuracy on the validation set plateaus to reduce overfitting. Because of this early stopping, the model trained in only 27 epochs.
+
 The second model, third model and fourth model have a similar structure to the first one. They all are fundamentally the same, being based on convolutional neural networks, but the number of layers were adjusted to 3, 9, and 7 respectively. We kept the learning rate the same at 0.001 across all four models.
 In the second model, we decreased the number of epochs to 15 and it 2 convolutional layers and 1 fully connected layer. Our third model contained 9 layers involving four convolutional layers, 3 fully connected layers and 2 dropout layers. We also kept the learning rate the same at a rate of 0.001 to ensure consistency across all models. A variation with the number of models was also the number of epochs so the second model consisted of 15 epochs. Our fourth model contained 7 layers; four convolutional layers, 2 fully connected layers and 1 dropout layer. We wanted to see whether the model would perform better and reduce overfitting encountered in model 1 by adding in a dropout layer to avoid connecting all the features to the fully connected layers. 
 Having these different models lets us choose a model that is not overfitting or underfitting to the training data.
+
 The final step in completing the project was mapping the recognized facial expressions to apple emojis. In order to do this, we identified a few emojis that represented the major emotions as shown in the emotion wheel above (see Figure 1). Therefore, any emotion that was identified in an image was subsequently paired with the emotion identified in the image.
 
 ## V.	RESULTS 
